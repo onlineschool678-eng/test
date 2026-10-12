@@ -1,0 +1,348 @@
+
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>একটি বিশেষ অনুরোধ ❤️</title>
+    <!-- Tailwind CSS for utility styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Bengali Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Mina:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            font-family: 'Hind Siliguri', sans-serif;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .title-font {
+            font-family: 'Mina', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0d0221 0%, #260830 40%, #4a0e4e 70%, #1f002b 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Star & Glow Background */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: radial-gradient(2px 2px at 20px 30px, #fff, rgba(0,0,0,0)),
+                        radial-gradient(2px 2px at 40px 70px, #ffd700, rgba(0,0,0,0)),
+                        radial-gradient(1px 1px at 90px 40px, #fff, rgba(0,0,0,0)),
+                        radial-gradient(2px 2px at 160px 120px, #ffb6c1, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            opacity: 0.6;
+            animation: starsSparkle 4s ease-infinite alternate;
+        }
+
+        @keyframes starsSparkle {
+            0% { opacity: 0.3; transform: scale(0.98); }
+            100% { opacity: 0.8; transform: scale(1.02); }
+        }
+
+        /* Golden Photo Frame */
+        .photo-frame {
+            position: relative;
+            padding: 8px;
+            background: linear-gradient(135deg, #ffd700, #ff8c00, #ff1493, #ffd700);
+            background-size: 300% 300%;
+            border-radius: 24px;
+            box-shadow: 0 0 25px rgba(255, 105, 180, 0.6), 0 0 50px rgba(255, 215, 0, 0.4);
+            animation: gradientBorder 4s ease infinite, pulseGlow 2s infinite alternate;
+        }
+
+        @keyframes gradientBorder {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 20px rgba(255, 105, 180, 0.5), 0 0 40px rgba(255, 215, 0, 0.3); }
+            100% { box-shadow: 0 0 35px rgba(255, 105, 180, 0.9), 0 0 70px rgba(255, 215, 0, 0.7); }
+        }
+
+        /* Floating Hearts Background */
+        .bg-heart {
+            position: absolute;
+            color: rgba(255, 105, 180, 0.3);
+            pointer-events: none;
+            animation: floatHeart 8s linear infinite;
+        }
+
+        @keyframes floatHeart {
+            0% { transform: translateY(100vh) rotate(0deg) scale(0.8); opacity: 0; }
+            20% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) rotate(360deg) scale(1.2); opacity: 0; }
+        }
+
+        /* Flying Emojis when dodging No */
+        .taunt-emoji {
+            position: fixed;
+            pointer-events: none;
+            font-size: 2.2rem;
+            animation: popAndFade 1.2s forwards ease-out;
+            z-index: 100;
+        }
+
+        @keyframes popAndFade {
+            0% { opacity: 0; transform: scale(0.3) translateY(0); }
+            50% { opacity: 1; transform: scale(1.4) translateY(-20px); }
+            100% { opacity: 0; transform: scale(1) translateY(-50px); }
+        }
+
+        /* Floating Balloon Animation */
+        .balloon {
+            position: fixed;
+            bottom: -100px;
+            opacity: 0.9;
+            pointer-events: none;
+            z-index: 40;
+            animation: riseUp 5s linear forwards;
+        }
+
+        @keyframes riseUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.9; }
+            100% { transform: translateY(-110vh) rotate(20deg); opacity: 0; }
+        }
+
+        /* Giant Heart Pump Effect */
+        .giant-heart {
+            animation: heartBeat 1.2s infinite ease-in-out;
+        }
+
+        @keyframes heartBeat {
+            0% { transform: scale(1); filter: drop-shadow(0 0 15px #ff1493); }
+            14% { transform: scale(1.25); filter: drop-shadow(0 0 30px #ff1493); }
+            28% { transform: scale(1); filter: drop-shadow(0 0 15px #ff1493); }
+            42% { transform: scale(1.2); filter: drop-shadow(0 0 25px #ff1493); }
+            70% { transform: scale(1); filter: drop-shadow(0 0 15px #ff1493); }
+        }
+
+        /* Smooth glassmorphism card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4 text-white">
+
+    <!-- Background Elements -->
+    <div class="stars"></div>
+    <div id="heartsContainer"></div>
+    <div id="balloonContainer"></div>
+
+    <!-- Main Container -->
+    <main class="relative z-10 w-full max-w-md mx-auto">
+        
+        <!-- INITIAL PROPOSAL CARD -->
+        <div id="proposalCard" class="glass-card rounded-3xl p-6 sm:p-8 text-center transition-all duration-500 transform hover:scale-[1.01]">
+            
+            <!-- Photo Frame -->
+            <div class="relative w-48 h-64 sm:w-56 sm:h-72 mx-auto mb-6 photo-frame">
+                <img id="userPhoto" 
+                     src="image_b2035e.jpg" 
+                     onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80'" 
+                     alt="Photo" 
+                     class="w-full h-full object-cover rounded-2xl shadow-inner">
+                <div class="absolute -bottom-3 -right-3 bg-pink-600 p-2 rounded-full shadow-lg text-lg animate-bounce">
+                    💖
+                </div>
+            </div>
+
+            <!-- Question Text -->
+            <h1 class="text-2xl sm:text-3xl font-bold title-font text-pink-200 mb-8 leading-snug drop-shadow-md">
+                তুমি কি আমাকে একসেপ্ট করছো? 🥺👉👈
+            </h1>
+
+            <!-- Buttons Area -->
+            <div class="relative min-h-[120px] flex items-center justify-center gap-4">
+                
+                <!-- YES Button -->
+                <button id="yesBtn" onclick="handleYesClick()" class="px-8 py-3.5 bg-gradient-to-r from-pink-500 to-rose-600 hover:from-pink-600 hover:to-rose-700 text-white font-bold text-lg rounded-full shadow-lg shadow-pink-500/40 hover:shadow-pink-500/70 transition-all transform hover:scale-110 active:scale-95 flex items-center gap-2">
+                    YES ❤️
+                </button>
+
+                <!-- NO Button (The Unreachable Teleporting Button) -->
+                <button id="noBtn" 
+                        onmouseover="teleportNoButton()" 
+                        ontouchstart="teleportNoButton(event)" 
+                        onclick="teleportNoButton(event)"
+                        class="px-8 py-3.5 bg-gradient-to-r from-gray-600 to-slate-700 text-white font-bold text-lg rounded-full shadow-md transition-all duration-150 absolute z-50 select-none">
+                    NO 😜
+                </button>
+            </div>
+        </div>
+
+        <!-- STAGE 1 SUCCESS CARD: "তবে কি আজ পূর্ণিমা?" -->
+        <div id="stage1Card" class="hidden glass-card rounded-3xl p-8 text-center transition-all duration-700 transform scale-90 opacity-0">
+            <div class="text-6xl mb-4 animate-pulse">🌕✨</div>
+            <h2 class="text-3xl sm:text-4xl font-bold title-font text-amber-200 leading-relaxed drop-shadow-lg">
+                তবে কি আজ পূর্ণিমা?
+            </h2>
+            <p class="text-pink-200 mt-2 text-sm opacity-80">একটু অপেক্ষা করো...</p>
+        </div>
+
+        <!-- STAGE 2 FINAL CELEBRATION CARD -->
+        <div id="finalCard" class="hidden glass-card rounded-3xl p-8 text-center transition-all duration-700 transform scale-90 opacity-0">
+            <!-- Pumping Heart -->
+            <div class="text-7xl sm:text-8xl mb-6 giant-heart text-red-500 inline-block">
+                ❤️
+            </div>
+            
+            <!-- Final Headline -->
+            <h2 class="text-2xl sm:text-3xl font-extrabold title-font text-white leading-relaxed mb-4 drop-shadow-md">
+                এখন মেসেজে চাইলে গালাগালি দিতে পারো 😂❤️
+            </h2>
+            
+            <p class="text-pink-300 text-base sm:text-lg mt-2 font-medium">
+                সব ভালোবাসা তোমার জন্য! ✨🎉
+            </p>
+        </div>
+
+    </main>
+
+    <!-- JavaScript Interactivity Logic -->
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const proposalCard = document.getElementById('proposalCard');
+        const stage1Card = document.getElementById('stage1Card');
+        const finalCard = document.getElementById('finalCard');
+        
+        const taunts = [
+            { text: "ধরা অসম্ভব! 😜", emoji: "🙈" },
+            { text: "No চাপার সুযোগ নেই! 🔪", emoji: "🤬" },
+            { text: "একটু চেষ্টা করেই দেখো! 😂", emoji: "🏃‍♂️" },
+            { text: "ধুর! পারবা না 😛", emoji: "🤪" },
+            { text: "শুধু YES ক্লিক করো! ❤️", emoji: "😡" }
+        ];
+
+        // Generate Floating Hearts in Background
+        function createBackgroundHearts() {
+            const container = document.getElementById('heartsContainer');
+            const heartIcons = ['❤️', '💖', '✨', '💕', '🌸'];
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'bg-heart';
+                heart.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                heart.style.animationDelay = (Math.random() * 5) + 's';
+                container.appendChild(heart);
+            }
+        }
+        createBackgroundHearts();
+
+        function teleportNoButton(event) {
+            if (event) {
+                event.preventDefault();
+            }
+
+            // Calculate random position within screen bounds
+            const padding = 80;
+            const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+            const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+            const randomX = Math.max(padding, Math.floor(Math.random() * maxX));
+            const randomY = Math.max(padding, Math.floor(Math.random() * maxY));
+
+            // Move button fixed to screen coordinates
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = `${randomX}px`;
+            noBtn.style.top = `${randomY}px`;
+
+            // Pick random taunt
+            const randomTaunt = taunts[Math.floor(Math.random() * taunts.length)];
+            
+            // Show dynamic emoji pop-up near the button
+            showTauntPop(randomX, randomY, randomTaunt.text + " " + randomTaunt.emoji);
+        }
+
+        function showTauntPop(x, y, text) {
+            const taunt = document.createElement('div');
+            taunt.className = 'taunt-emoji font-bold text-pink-300 drop-shadow-lg text-sm sm:text-base bg-black/60 px-3 py-1 rounded-full border border-pink-500/50';
+            taunt.innerText = text;
+            taunt.style.left = `${Math.min(x, window.innerWidth - 180)}px`;
+            taunt.style.top = `${Math.max(10, y - 40)}px`;
+            document.body.appendChild(taunt);
+
+            setTimeout(() => {
+                taunt.remove();
+            }, 1200);
+        }
+
+        function handleYesClick() {
+            // Hide Proposal Card
+            proposalCard.classList.add('opacity-0', 'scale-90');
+            
+            setTimeout(() => {
+                proposalCard.classList.add('hidden');
+                
+                // Show Stage 1: "তবে কি আজ পূর্ণিমা?"
+                stage1Card.classList.remove('hidden');
+                setTimeout(() => {
+                    stage1Card.classList.remove('opacity-0', 'scale-90');
+                    stage1Card.classList.add('opacity-100', 'scale-100');
+                }, 50);
+
+                // Transition to Stage 2 after 3 seconds
+                setTimeout(() => {
+                    stage1Card.classList.remove('opacity-100', 'scale-100');
+                    stage1Card.classList.add('opacity-0', 'scale-90');
+
+                    setTimeout(() => {
+                        stage1Card.classList.add('hidden');
+                        
+                        // Show Final Stage
+                        finalCard.classList.remove('hidden');
+                        setTimeout(() => {
+                            finalCard.classList.remove('opacity-0', 'scale-90');
+                            finalCard.classList.add('opacity-100', 'scale-100');
+                        }, 50);
+
+                        // Start continuous Balloons and Hearts explosion
+                        startCelebration();
+                    }, 500);
+
+                }, 3000);
+
+            }, 500);
+        }
+
+        function startCelebration() {
+            const container = document.getElementById('balloonContainer');
+            const balloonEmojis = ['🎈', '🎈', '💖', '🎈', '✨', '🎉', '💕'];
+
+            setInterval(() => {
+                const balloon = document.createElement('div');
+                balloon.className = 'balloon text-4xl sm:text-5xl';
+                balloon.innerText = balloonEmojis[Math.floor(Math.random() * balloonEmojis.length)];
+                balloon.style.left = Math.random() * 90 + 5 + 'vw';
+                balloon.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                container.appendChild(balloon);
+
+                setTimeout(() => {
+                    balloon.remove();
+                }, 5000);
+            }, 250);
+        }
+    </script>
+</body>
+</html>
